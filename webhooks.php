@@ -24,16 +24,16 @@ if (!is_null($events['events'])) {
 
 			// Me 
 			$commandText = array(
-				'list' => array('sulg'=>'regislist','para'=>NULL),
-				'sizem' => array('sulg'=>'regisSize','para'=>1),
-				'sizexl' => array('sulg'=>'regisSize','para'=>2),
-				'size2xl' => array('sulg'=>'regisSize','para'=>3),
+				'list' => array('slug'=>'regislist','para'=>NULL),
+				'sizem' => array('slug'=>'regisSize','para'=>1),
+				'sizexl' => array('slug'=>'regisSize','para'=>2),
+				'size2xl' => array('slug'=>'regisSize','para'=>3),
 			);
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
 			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.2 '."\r\n";
 			if( array_key_exists($UserMessage, $commandText) ){
 				$command = $commandText[$UserMessage];
-				$slug = $command['sulg'];
+				$slug = $command['slug'];
 				$para = $command['para'];
 				$responseData = postData($slug,$para);
 				$textData = json_decode($responseData, $para);
@@ -74,8 +74,6 @@ if (!is_null($events['events'])) {
 	}
 }
 // echo "OK naja";
-
-echo postData();
 
 
 function postData($slug,$para=NULL){

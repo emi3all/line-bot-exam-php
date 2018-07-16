@@ -24,12 +24,14 @@ if (!is_null($events['events'])) {
 
 			// Me 
 			$commandText = array('-list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list'
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list';
 			if( in_array($UserMessage, $commandText) ){
 				$text = postData();
 			}else{
 				$text = $howtoUseText;
 			}
+
+			echo $text;
 
 			// Build message to reply back
 			$messages = [
@@ -72,6 +74,6 @@ function postData(){
 	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt( $ch, CURLOPT_HEADER, 0);
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
-	$response = curl_exec( $ch )
+	$response = curl_exec( $ch );
 	return $response;
 }

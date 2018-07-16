@@ -17,8 +17,17 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['source']['userId'];
+			$text = print_r($event);
 			// Get replyToken
 			$replyToken = $event['replyToken'];
+
+
+			// Me 
+			// $commandText = array('-list');
+			// $howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list'
+			// if( in_array("Glenn", $people) ){
+
+			// }
 
 			// Build message to reply back
 			$messages = [

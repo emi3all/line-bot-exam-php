@@ -26,12 +26,12 @@ if (!is_null($events['events'])) {
 			$commandText = array('-list');
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list';
 			if( in_array($UserMessage, $commandText) ){
-				$text = postData();
+				$text = "จำนวนผู้ลงทะเบียนทั้งหมดตอนนี้คือ ".postData();
 			}else{
 				$text = $howtoUseText;
 			}
 
-			echo $text;
+			// echo $text;
 
 			// Build message to reply back
 			$messages = [
@@ -62,15 +62,16 @@ if (!is_null($events['events'])) {
 		}
 	}
 }
-echo "OK naja";
+// echo "OK naja";
+
 
 function postData(){
 	$url = 'http://siamparagon.co.th/WeDoGoodWithHeart/Linebot/regislist';
-	// $myvars = 'myvar1=' . $myvar1 . '&myvar2=' . $myvar2;
+	$myvars = 'myvar1=test';
 
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
-	// curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
 	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt( $ch, CURLOPT_HEADER, 0);
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);

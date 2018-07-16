@@ -23,10 +23,12 @@ if (!is_null($events['events'])) {
 
 
 			// Me 
-			$commandText = array('list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // list';
+			$commandText = array('-list');
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list';
 			if( in_array($UserMessage, $commandText) ){
-				$text = postData();
+				$responseData = postData();
+				$textData = json_decode($responseData, true);
+				$text = $textData['msg'];
 			}else{
 				$text = $howtoUseText;
 			}
@@ -63,16 +65,6 @@ if (!is_null($events['events'])) {
 	}
 }
 // echo "OK naja";
-
-			$commandText = array('list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // list';
-			if( in_array('list', $commandText) ){
-				$text = postData();
-			}else{
-				$text = $howtoUseText;
-			}
-
-			echo $text;
 
 
 function postData(){

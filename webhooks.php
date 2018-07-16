@@ -26,7 +26,8 @@ if (!is_null($events['events'])) {
 			$commandText = array('list');
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // list';
 			if( in_array($UserMessage, $commandText) ){
-				$text = postData();
+				// $text = postData();
+				$text = 1850;
 			}else{
 				$text = $howtoUseText;
 			}
@@ -63,6 +64,16 @@ if (!is_null($events['events'])) {
 	}
 }
 // echo "OK naja";
+
+			$commandText = array('list');
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // list';
+			if( in_array('list', $commandText) ){
+				$text = postData();
+			}else{
+				$text = $howtoUseText;
+			}
+
+			echo $text;
 
 
 function postData(){

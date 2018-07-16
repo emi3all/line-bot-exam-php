@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
 
 			// Me 
 			$commandText = array('-list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list';
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list 1.1';
 			if( in_array($UserMessage, $commandText) ){
 				$responseData = postData();
 				$textData = json_decode($responseData, true);

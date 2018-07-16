@@ -17,17 +17,19 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['source']['userId'];
-			$text = $event['message']['text'];
+			$UserMessage = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
 
 			// Me 
-			// $commandText = array('-list');
-			// $howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list'
-			// if( in_array("Glenn", $people) ){
-
-			// }
+			$commandText = array('-list');
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list'
+			if( in_array($UserMessage, $commandText) ){
+				$text = postData();
+			}else{
+				$text = $howtoUseText;
+			}
 
 			// Build message to reply back
 			$messages = [
@@ -41,6 +43,7 @@ if (!is_null($events['events'])) {
 				'replyToken' => $replyToken,
 				'messages' => [$messages],
 			];
+
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
@@ -58,3 +61,17 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK naja";
+
+function postData(){
+	$url = 'http://siamparagon.co.th/WeDoGoodWithHeart/Linebot/regislist';
+	// $myvars = 'myvar1=' . $myvar1 . '&myvar2=' . $myvar2;
+
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_POST, 1);
+	// curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+	$response = curl_exec( $ch )
+	return $response;
+}

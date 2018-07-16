@@ -30,8 +30,8 @@ if (!is_null($events['events'])) {
 				'size2xl' => array('sulg'=>'regisSize','para'=>3),
 			);
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
-			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl '."\r\n";
-			if( in_array($UserMessage, $commandText) ){
+			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.2 '."\r\n";
+			if( array_key_exists($UserMessage, $commandText) ){
 				$command = $commandText[$UserMessage];
 				$slug = $command['sulg'];
 				$para = $command['para'];

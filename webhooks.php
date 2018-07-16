@@ -30,14 +30,14 @@ if (!is_null($events['events'])) {
 				'size2xl' => array('slug'=>'regisSize','para'=>3),
 			);
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
-			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.2 '."\r\n";
+			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.3 '."\r\n";
 			if( array_key_exists($UserMessage, $commandText) ){
 				$command = $commandText[$UserMessage];
 				$slug = $command['slug'];
 				$para = $command['para'];
 				$responseData = postData($slug,$para);
 				$textData = json_decode($responseData, $para);
-				$text = $textData['msg'];
+				$text = $command['slug'];
 			}else{
 				$text = $howtoUseText;
 			}

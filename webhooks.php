@@ -23,8 +23,8 @@ if (!is_null($events['events'])) {
 
 
 			// Me 
-			$commandText = array('-list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list';
+			$commandText = array('list');
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // list';
 			if( in_array($UserMessage, $commandText) ){
 				$text = "จำนวนผู้ลงทะเบียนทั้งหมดตอนนี้คือ ".postData();
 			}else{

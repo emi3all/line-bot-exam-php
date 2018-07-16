@@ -23,11 +23,20 @@ if (!is_null($events['events'])) {
 
 
 			// Me 
-			$commandText = array('-list');
-			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด // -list 1.1';
+			$commandText = array(
+				'list' => array('sulg'=>'regislist','para'=>NULL),
+				'sizem' => array('sulg'=>'regisSize','para'=>1),
+				'sizexl' => array('sulg'=>'regisSize','para'=>2),
+				'size2xl' => array('sulg'=>'regisSize','para'=>3),
+			);
+			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
+			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl '."\r\n";
 			if( in_array($UserMessage, $commandText) ){
-				$responseData = postData();
-				$textData = json_decode($responseData, true);
+				$command = $commandText[$UserMessage];
+				$slug = $command['sulg'];
+				$para = $command['para'];
+				$responseData = postData($slug,$para);
+				$textData = json_decode($responseData, $para);
 				$text = $textData['msg'];
 			}else{
 				$text = $howtoUseText;
@@ -66,10 +75,12 @@ if (!is_null($events['events'])) {
 }
 // echo "OK naja";
 
+echo postData();
 
-function postData(){
-	$url = 'http://siamparagon.co.th/WeDoGoodWithHeart/Linebot/regislist';
-	$myvars = 'myvar1=test';
+
+function postData($slug,$para=NULL){
+	$url = 'http://siamparagon.co.th/WeDoGoodWithHeart/Linebot/'.$slug;
+	$myvars = 'para='.$para;
 
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);

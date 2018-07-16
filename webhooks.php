@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
 
 			// Me 
 			$commandText = array(
-				'list' => array('slug'=>'regislist','para'=>NULL),
+				'list' => array('slug'=>'regislist','para'=>"NULL"),
 				'sizem' => array('slug'=>'regisSize','para'=>1),
 				'sizexl' => array('slug'=>'regisSize','para'=>2),
 				'size2xl' => array('slug'=>'regisSize','para'=>3),

@@ -128,7 +128,7 @@ function postDataApi($url,$userId){
         "action": {
           "type": "uri",
           "label": "Register",
-          "uri": "https://linecorp.com"
+          "uri": "https://onesiam.com/"
         }
       },
       {

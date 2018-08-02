@@ -16,6 +16,7 @@ if (!is_null($events['events'])) {
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
+			$userId = $event['source']['userId'];
 			$text = $event['source']['userId'];
 			$UserMessage = $event['message']['text'];
 			// Get replyToken
@@ -28,6 +29,7 @@ if (!is_null($events['events'])) {
 				'sizem' => array('slug'=>'regisSize','para'=>1),
 				'sizexl' => array('slug'=>'regisSize','para'=>2),
 				'size2xl' => array('slug'=>'regisSize','para'=>3),
+				'size2xl' => array('slug'=>'#tenant','para'=>"NULL"),
 			);
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
 			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.5 '."\r\n";
@@ -39,7 +41,7 @@ if (!is_null($events['events'])) {
 				$textData = json_decode($responseData, $para);
 				$text = $textData['msg'];
 			}else{
-				$text = $howtoUseText;
+				$text = $howtoUseText." == ".$userId;
 			}
 
 			// echo $text;

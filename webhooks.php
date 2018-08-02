@@ -48,6 +48,10 @@ if (!is_null($events['events'])) {
 				$text = '';
 			}
 
+			if($UserMessage == '#profile'){
+				$text = json_encode($event);
+			}
+
 			// echo $text;
 
 			// Build message to reply back

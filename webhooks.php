@@ -97,6 +97,7 @@ function postData($slug,$para=NULL){
 }
 
 function postDataApi($url,$userId){
+	global $access_token;
 	$myvars = '{
     "to": "'.$userId.'",
     "messages":[

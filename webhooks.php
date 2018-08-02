@@ -28,8 +28,7 @@ if (!is_null($events['events'])) {
 				'list' => array('slug'=>'regislist','para'=>"NULL"),
 				'sizem' => array('slug'=>'regisSize','para'=>1),
 				'sizexl' => array('slug'=>'regisSize','para'=>2),
-				'size2xl' => array('slug'=>'regisSize','para'=>3),
-				'size2xl' => array('slug'=>'#tenant','para'=>"NULL"),
+				'size2xl' => array('slug'=>'regisSize','para'=>3)
 			);
 			$howtoUseText = '1. จำนวนผู้ลงทะเบียนทั้งหมด คำสั่ง list '."\r\n";
 			$howtoUseText .= '2. จำนวน Size เสื้อ คำสั่ง sizem , sizexl , size2xl 1.5 '."\r\n";
@@ -42,6 +41,11 @@ if (!is_null($events['events'])) {
 				$text = $textData['msg'];
 			}else{
 				$text = $howtoUseText." == ".$userId;
+			}
+
+			if($UserMessage == '#tenant'){
+				postDataApi('https://api.line.me/v2/bot/message/push',$userId);
+				$text = '';
 			}
 
 			// echo $text;
@@ -82,6 +86,62 @@ function postData($slug,$para=NULL){
 	$url = 'http://siamparagon.co.th/WeDoGoodWithHeart/Linebot/'.$slug;
 	$myvars = 'para='.$para;
 
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_POST, 1);
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+	$response = curl_exec( $ch );
+	return $response;
+}
+
+function postDataApi($url,$userId){
+	$myvars = '{
+    "to": "'.$userId.'",
+    "messages":[
+       {
+      "type": "flex",
+      "altText": "This is a Flex Message",
+      "contents": {
+        "type": "bubble",
+        "hero": {
+		    "type": "image",
+		    "url": "https://young-basin-26390.herokuapp.com/images/logo_flox.png",
+		    "size": "full",
+		    "aspectRatio": "20:13",
+		    "aspectMode": "cover"
+		  },
+		"footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "spacer",
+        "size": "xxl"
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#08263e",
+        "action": {
+          "type": "uri",
+          "label": "Register",
+          "uri": "https://linecorp.com"
+        }
+      },
+      {
+        "type": "spacer",
+        "size": "xxl"
+      }
+    ]
+  }
+    
+      }
+    }
+  
+    ]
+}';
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
 	curl_setopt( $ch, CURLOPT_POSTFIELDS, $myvars);
